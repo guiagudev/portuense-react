@@ -24,7 +24,7 @@ export default function Login() {
 
       const data = await response.json();
       saveToken(data.access, remember);
-      navigate('/welcome');
+      navigate('/dashboard');
     } catch (err) {
         console.log('Error:', err);
       setError('Usuario o contraseña incorrectos');
