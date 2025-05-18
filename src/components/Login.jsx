@@ -5,7 +5,6 @@ import { saveToken } from '../utils/auth';
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [remember, setRemember] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -23,10 +22,22 @@ export default function Login() {
       if (!response.ok) throw new Error('Login failed');
 
       const data = await response.json();
-      saveToken(data.access, remember);
+      saveToken(data.access, false); // Siempre guarda en sessionStorage
+
+      const meRes = await fetch('http://localhost:8000/api/me/', {
+        headers: {
+          Authorization: `Bearer ${data.access}`,
+        },
+      });
+
+      if (!meRes.ok) throw new Error('Error al obtener datos del usuario');
+
+      const userData = await meRes.json();
+      sessionStorage.setItem('userGroups', JSON.stringify(userData.groups || []));
+
       navigate('/dashboard');
     } catch (err) {
-        console.log('Error:', err);
+      console.log('Error:', err);
       setError('Usuario o contraseña incorrectos');
     }
   };
@@ -49,14 +60,6 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <label>
-          <input
-            type="checkbox"
-            checked={remember}
-            onChange={(e) => setRemember(e.target.checked)}
-          />
-          Recordarme
-        </label>
         <button type="submit">Entrar</button>
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </form>

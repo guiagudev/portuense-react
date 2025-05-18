@@ -61,8 +61,10 @@ export default function Jugadores() {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>ID</th>
+            
             <th>Nombre</th>
+            <th>Posición</th>
+            <th>Edad</th>
             <th>Equipo</th>
             <th>Categoría</th>
             <th>Acciones</th>
