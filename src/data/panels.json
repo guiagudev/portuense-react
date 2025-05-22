@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Primer Equipo Masculino",
+    "text": "Jugadores del equipo masculino.",
+    "query": { "equipo": "M", "categoria": "SEN" },
+    "visibleTo": ["admin", "coordinador"]
+  },
+  {
+    "title": "Primer Equipo Femenino",
+    "text": "Jugadoras del equipo femenino.",
+    "query": { "equipo": "F", "categoria": "SEN" },
+    "visibleTo": ["admin", "coordinador"]
+  },
+  {
+    "title": "Categoría Alevín",
+    "text": "Jugadores categoría Alevín.",
+    "query": { "categoria": "ALE" },
+    "visibleTo": ["admin", "entrenador"]
+  },
+  {
+    "title": "Categoría Infantil",
+    "text": "Jugadores categoría Infantil.",
+    "query": { "categoria": "INF" },
+    "visibleTo": ["admin", "entrenador"]
+  },
+  {
+    "title": "Panel solo admins",
+    "text": "Solo visible por administradores.",
+    "query": { "categoria": "SEC" },
+    "visibleTo": ["admin"]
+  }
+]
